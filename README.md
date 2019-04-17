@@ -1,6 +1,6 @@
 # gulp-transform-template-vue-regular
 
-A Gulp plugin to convert vue to regular using [transform-template-vue-regular]('https://github.com/brizer/transform-template-vue-regular')
+A Gulp plugin to convert vue to regular using [transform-template-vue-regular]('https://github.com/brizer/gulp-transform-template-vue-regular')
 
 ## Install
 
