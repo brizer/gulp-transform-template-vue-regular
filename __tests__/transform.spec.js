@@ -24,37 +24,37 @@ describe("test gulpTransform", () => {
 </div>
 
 <div class="u-search-user-content">
-    {#if !account || (account && account.status == -1) || (account && account.status == 2)}
-    <div class="f-fl tips">
+    {#if !account || (account && account.status == -1) || (account && account.status == 2)}<div class="f-fl tips">
         {txtMap['searchEmpty']}
-    </div>
-    {/if}
+    </div>{/if}
     {#if account && account.status != -1 && account.status != 2}
     <div class="account-item f-cb">
         <div class="f-fl avatar">
             <img src="{account.largeFaceUrl || defaultAvatar}">
         </div>
         
-        {#if !isCom}
-        <div class="f-fl desc">
+        {#if !isCom}<div class="f-fl desc">
             <div class="title">昵称：{account.nickName}</div>
             <div class="email">{txtMap['name']}：{account.realName}</div>
-        </div>
-        {#else}
-        <div class="f-fl desc">
+        </div>{#else}
+         <div class="f-fl desc">
             <div class="title">{txtMap['name']}：{account.realName}</div>
             <div class="email">员工编号：{account.idNum}</div>
-        </div>
-        {/if}
+        </div>{/if}
 
         <div class="f-fl oper">
             <span class="u-btn u-btn-sm u-btn-gh" r-class="{ {'u-btn-disabled': !!account.alreadyIn} }" on-click="{this.add(account)}">{#if !account.alreadyIn}确认添加{#else}已添加{/if}</span>
         </div>
     </div>
-    {/if}
-    {#if errorMsg}
-    <div class="u-tip u-tip-error">{errorMsg}</div>
-    {/if}
+    {/if} 
+    {#if errorMsg}<div class="u-tip u-tip-error">{errorMsg}</div>{/if}
+        {#list list as item}<div>
+            <span>{item.name}</span>
+            {#list item.list as item2}
+                <div on-click="{this.doSom()}">{item2.value}</div>
+                    {#list item2.list as img}<img src="{img}" alt="">{/list}
+            {/list}
+        </div>{/list}
 </div>`;
 
     parseTemplate()  

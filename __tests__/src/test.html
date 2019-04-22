@@ -3,35 +3,35 @@
 </div>
 
 <div class="u-search-user-content">
-    {#if !account || (account && account.status == -1) || (account && account.status == 2)}
-    <div class="f-fl tips">
+    <div v-if="!account || (account && account.status == -1) || (account && account.status == 2)" class="f-fl tips">
         {txtMap['searchEmpty']}
     </div>
-    {/if}
-    {#if account && account.status != -1 && account.status != 2}
+    <template v-if="account && account.status != -1 && account.status != 2">
     <div class="account-item f-cb">
         <div class="f-fl avatar">
             <img :src="account.largeFaceUrl || defaultAvatar">
         </div>
         
-        {#if !isCom}
-        <div class="f-fl desc">
+        <div v-if="!isCom" class="f-fl desc">
             <div class="title">昵称：{account.nickName}</div>
             <div class="email">{txtMap['name']}：{account.realName}</div>
         </div>
-        {#else}
-        <div class="f-fl desc">
+        <div v-else class="f-fl desc">
             <div class="title">{txtMap['name']}：{account.realName}</div>
             <div class="email">员工编号：{account.idNum}</div>
         </div>
-        {/if}
 
         <div class="f-fl oper">
             <span class="u-btn u-btn-sm u-btn-gh" r-class="{ {'u-btn-disabled': !!account.alreadyIn} }"  @click="add(account)">{#if !account.alreadyIn}确认添加{#else}已添加{/if}</span>
         </div>
     </div>
-    {/if}
-    {#if errorMsg}
-    <div class="u-tip u-tip-error">{errorMsg}</div>
-    {/if}
+    </template> 
+    <div v-if="errorMsg" class="u-tip u-tip-error">{errorMsg}</div>
+        <div v-for="item in list">
+            <span>{item.name}</span>
+            <template v-for="item2 in item.list">
+                <div @click="doSom()">{item2.value}</div>
+                    <img v-for="img in item2.list" :src="img" alt="">
+            </template>
+        </div>
 </div>
